@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tables | TailAdmin - Tailwind CSS Admin Dashboard Template</title>
+  </head>
+
+  <body
+    x-data="{ page: 'tables', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
+    x-init="
+          darkMode = JSON.parse(localStorage.getItem('darkMode'));
+          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+    :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}"
+  >
+    <!-- ===== Preloader Start ===== -->
+    <include src="./partials/preloader.html"></include>
+    <!-- ===== Preloader End ===== -->
+
+    <!-- ===== Page Wrapper Start ===== -->
+    <div class="flex h-screen overflow-hidden">
+      <!-- ===== Sidebar Start ===== -->
+      <include src="./partials/sidebar.html"></include>
+      <!-- ===== Sidebar End ===== -->
+
+      <!-- ===== Content Area Start ===== -->
+      <div
+        class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden"
+      >
+        <!-- ===== Header Start ===== -->
+        <include src="./partials/header.html" />
+        <!-- ===== Header End ===== -->
+
+        <!-- ===== Main Content Start ===== -->
+        <main>
+        <div class="flex flex-col gap-4 justify-between lg:flex-row mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+            <!-- left section -->
+            <div class="w-full flex flex-col gap-4">
+
+                <!-- new coupon section -->
+                <div class=" p-4 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+                        <label class="mb-3 block  font-medium text-xl text-black dark:text-white">
+                          Add new coupon
+                        </label>
+                        <input type="text" placeholder="Coupon code" class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary">
+                        <a href="#" class="mt-4 inline-flex items-center justify-center rounded-md bg-black px-10 py-4 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10">
+                            Generate coupon code
+                        </a>
+                        <textarea rows="6" placeholder="Description(Optional)" class="mt-4 w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"></textarea>                   
+                </div>
+
+                <!-- general section -->
+                <div class="flex flex-col gap-6 p-4 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+                  <div class="border-b  border-stroke  dark:border-strokedark">
+                    <h3 class="mb-4 font-medium text-xl text-black dark:text-white">
+                      General
+                    </h3>
+                  </div>
+                  <div class="">
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                      Discount type
+                    </label>
+                    <div x-data="{ isOptionSelected: false }" class="relative z-20 bg-transparent dark:bg-form-input">
+                      <select class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary text-black dark:text-white" :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'" @change="isOptionSelected = true">
+                        <option value="" class="text-body">
+                          Type your subject
+                        </option>
+                        <option value="" class="text-body">Option 1</option>
+                        <option value="" class="text-body">Option 2</option>
+                        <option value="" class="text-body">Option 3</option>
+                      </select>
+                      <span class="absolute right-4 top-1/2 z-30 -translate-y-1/2">
+                        <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <g opacity="0.8">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill=""></path>
+                          </g>
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="w-full ">
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                      Coupon amount
+                    </label>
+                    <input type="text" placeholder="Enter your last name" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary">
+                  </div>
+                  <div x-data="{ checkboxToggle: false }" class="">
+                    <label for="checkboxLabelOne" class="flex cursor-pointer select-none items-center text-sm font-medium">
+                      <div class="relative">
+                        <input type="checkbox" id="checkboxLabelOne" class="sr-only" @change="checkboxToggle = !checkboxToggle">
+                        <div :class="checkboxToggle &amp;&amp; 'border-primary bg-gray dark:bg-transparent'" class="mr-4 flex h-5 w-5 items-center justify-center rounded border border-primary bg-gray dark:bg-transparent">
+                          <span :class="checkboxToggle &amp;&amp; '!opacity-100'" class="opacity-0 ">
+                            <svg width="11" height="8" viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M10.0915 0.951972L10.0867 0.946075L10.0813 0.940568C9.90076 0.753564 9.61034 0.753146 9.42927 0.939309L4.16201 6.22962L1.58507 3.63469C1.40401 3.44841 1.11351 3.44879 0.932892 3.63584C0.755703 3.81933 0.755703 4.10875 0.932892 4.29224L0.932878 4.29225L0.934851 4.29424L3.58046 6.95832C3.73676 7.11955 3.94983 7.2 4.1473 7.2C4.36196 7.2 4.55963 7.11773 4.71406 6.9584L10.0468 1.60234C10.2436 1.4199 10.2421 1.1339 10.0915 0.951972ZM4.2327 6.30081L4.2317 6.2998C4.23206 6.30015 4.23237 6.30049 4.23269 6.30082L4.2327 6.30081Z" fill="#3056D3" stroke="#3056D3" stroke-width="0.4"></path>
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                      Allow free shipping
+                    </label>
+                  </div>
+                  <div class="">
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                      Coupon expiry date
+                    </label>
+                    <div class="relative">
+                      <div class="flatpickr-wrapper"><input class="form-datepicker w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary flatpickr-input" placeholder="mm/dd/yyyy" data-class="flatpickr-right" type="text" readonly="readonly"><div class="flatpickr-calendar animate static arrowTop arrowLeft" tabindex="-1"><div class="flatpickr-months"><span class="flatpickr-prev-month"><svg class="fill-current" width="7" height="11" viewBox="0 0 7 11"><path d="M5.4 10.8l1.4-1.4-4-4 4-4L5.4 0 0 5.4z"></path></svg></span><div class="flatpickr-month"><div class="flatpickr-current-month"><span class="cur-month">July </span><div class="numInputWrapper"><input class="numInput cur-year" type="number" tabindex="-1" aria-label="Year"><span class="arrowUp"></span><span class="arrowDown"></span></div></div></div><span class="flatpickr-next-month"><svg class="fill-current" width="7" height="11" viewBox="0 0 7 11"><path d="M1.4 10.8L0 9.4l4-4-4-4L1.4 0l5.4 5.4z"></path></svg></span></div><div class="flatpickr-innerContainer"><div class="flatpickr-rContainer"><div class="flatpickr-weekdays"><div class="flatpickr-weekdaycontainer">
+    <span class="flatpickr-weekday">
+      Sun</span><span class="flatpickr-weekday">Mon</span><span class="flatpickr-weekday">Tue</span><span class="flatpickr-weekday">Wed</span><span class="flatpickr-weekday">Thu</span><span class="flatpickr-weekday">Fri</span><span class="flatpickr-weekday">Sat
+    </span>
+    </div></div><div class="flatpickr-days" tabindex="-1"><div class="dayContainer"><span class="flatpickr-day prevMonthDay" aria-label="June 30, 2024" tabindex="-1">30</span><span class="flatpickr-day" aria-label="July 1, 2024" tabindex="-1">1</span><span class="flatpickr-day" aria-label="July 2, 2024" tabindex="-1">2</span><span class="flatpickr-day" aria-label="July 3, 2024" tabindex="-1">3</span><span class="flatpickr-day" aria-label="July 4, 2024" tabindex="-1">4</span><span class="flatpickr-day" aria-label="July 5, 2024" tabindex="-1">5</span><span class="flatpickr-day" aria-label="July 6, 2024" tabindex="-1">6</span><span class="flatpickr-day" aria-label="July 7, 2024" tabindex="-1">7</span><span class="flatpickr-day" aria-label="July 8, 2024" tabindex="-1">8</span><span class="flatpickr-day" aria-label="July 9, 2024" tabindex="-1">9</span><span class="flatpickr-day" aria-label="July 10, 2024" tabindex="-1">10</span><span class="flatpickr-day" aria-label="July 11, 2024" tabindex="-1">11</span><span class="flatpickr-day today" aria-label="July 12, 2024" aria-current="date" tabindex="-1">12</span><span class="flatpickr-day" aria-label="July 13, 2024" tabindex="-1">13</span><span class="flatpickr-day" aria-label="July 14, 2024" tabindex="-1">14</span><span class="flatpickr-day" aria-label="July 15, 2024" tabindex="-1">15</span><span class="flatpickr-day" aria-label="July 16, 2024" tabindex="-1">16</span><span class="flatpickr-day" aria-label="July 17, 2024" tabindex="-1">17</span><span class="flatpickr-day" aria-label="July 18, 2024" tabindex="-1">18</span><span class="flatpickr-day" aria-label="July 19, 2024" tabindex="-1">19</span><span class="flatpickr-day" aria-label="July 20, 2024" tabindex="-1">20</span><span class="flatpickr-day" aria-label="July 21, 2024" tabindex="-1">21</span><span class="flatpickr-day" aria-label="July 22, 2024" tabindex="-1">22</span><span class="flatpickr-day" aria-label="July 23, 2024" tabindex="-1">23</span><span class="flatpickr-day" aria-label="July 24, 2024" tabindex="-1">24</span><span class="flatpickr-day" aria-label="July 25, 2024" tabindex="-1">25</span><span class="flatpickr-day" aria-label="July 26, 2024" tabindex="-1">26</span><span class="flatpickr-day" aria-label="July 27, 2024" tabindex="-1">27</span><span class="flatpickr-day" aria-label="July 28, 2024" tabindex="-1">28</span><span class="flatpickr-day" aria-label="July 29, 2024" tabindex="-1">29</span><span class="flatpickr-day" aria-label="July 30, 2024" tabindex="-1">30</span><span class="flatpickr-day" aria-label="July 31, 2024" tabindex="-1">31</span><span class="flatpickr-day nextMonthDay" aria-label="August 1, 2024" tabindex="-1">1</span><span class="flatpickr-day nextMonthDay" aria-label="August 2, 2024" tabindex="-1">2</span><span class="flatpickr-day nextMonthDay" aria-label="August 3, 2024" tabindex="-1">3</span><span class="flatpickr-day nextMonthDay" aria-label="August 4, 2024" tabindex="-1">4</span><span class="flatpickr-day nextMonthDay" aria-label="August 5, 2024" tabindex="-1">5</span><span class="flatpickr-day nextMonthDay" aria-label="August 6, 2024" tabindex="-1">6</span><span class="flatpickr-day nextMonthDay" aria-label="August 7, 2024" tabindex="-1">7</span><span class="flatpickr-day nextMonthDay" aria-label="August 8, 2024" tabindex="-1">8</span><span class="flatpickr-day nextMonthDay" aria-label="August 9, 2024" tabindex="-1">9</span><span class="flatpickr-day nextMonthDay" aria-label="August 10, 2024" tabindex="-1">10</span></div></div></div></div></div></div>
+
+                      <div class="pointer-events-none absolute inset-0 left-auto right-5 flex items-center">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M15.7504 2.9812H14.2879V2.36245C14.2879 2.02495 14.0066 1.71558 13.641 1.71558C13.2754 1.71558 12.9941 1.99683 12.9941 2.36245V2.9812H4.97852V2.36245C4.97852 2.02495 4.69727 1.71558 4.33164 1.71558C3.96602 1.71558 3.68477 1.99683 3.68477 2.36245V2.9812H2.25039C1.29414 2.9812 0.478516 3.7687 0.478516 4.75308V14.5406C0.478516 15.4968 1.26602 16.3125 2.25039 16.3125H15.7504C16.7066 16.3125 17.5223 15.525 17.5223 14.5406V4.72495C17.5223 3.7687 16.7066 2.9812 15.7504 2.9812ZM1.77227 8.21245H4.16289V10.9968H1.77227V8.21245ZM5.42852 8.21245H8.38164V10.9968H5.42852V8.21245ZM8.38164 12.2625V15.0187H5.42852V12.2625H8.38164V12.2625ZM9.64727 12.2625H12.6004V15.0187H9.64727V12.2625ZM9.64727 10.9968V8.21245H12.6004V10.9968H9.64727ZM13.8379 8.21245H16.2285V10.9968H13.8379V8.21245ZM2.25039 4.24683H3.71289V4.83745C3.71289 5.17495 3.99414 5.48433 4.35977 5.48433C4.72539 5.48433 5.00664 5.20308 5.00664 4.83745V4.24683H13.0504V4.83745C13.0504 5.17495 13.3316 5.48433 13.6973 5.48433C14.0629 5.48433 14.3441 5.20308 14.3441 4.83745V4.24683H15.7504C16.0316 4.24683 16.2566 4.47183 16.2566 4.75308V6.94683H1.77227V4.75308C1.77227 4.47183 1.96914 4.24683 2.25039 4.24683ZM1.77227 14.5125V12.2343H4.16289V14.9906H2.25039C1.96914 15.0187 1.77227 14.7937 1.77227 14.5125ZM15.7504 15.0187H13.8379V12.2625H16.2285V14.5406C16.2566 14.7937 16.0316 15.0187 15.7504 15.0187Z" fill="#64748B"></path>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- usage restriction section -->
+                <div class="flex flex-col gap-6 p-4 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+                  <div class="border-b  border-stroke  dark:border-strokedark">
+                    <h3 class="mb-4 font-medium text-xl text-black dark:text-white">
+                      Usage restriction
+                    </h3>
+                  </div>
+                  <div class="w-full ">
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                      Minimum spend
+                    </label>
+                    <input type="text" placeholder="No Minimum" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary">
+                  </div>
+                  <div class="w-full ">
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                      Maximum spend
+                    </label>
+                    <input type="text" placeholder="No Maximum" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary">
+                  </div>
+                  <div x-data="{ checkboxToggle: false }" class="">
+                    <label for="checkboxLabelTwo" class="flex cursor-pointer select-none items-center text-sm font-medium">
+                      <div class="relative">
+                        <input type="checkbox" id="checkboxLabelTwo" class="sr-only" @change="checkboxToggle = !checkboxToggle">
+                        <div :class="checkboxToggle &amp;&amp; 'border-primary bg-gray dark:bg-transparent'" class="mr-4 flex h-5 w-5 items-center justify-center rounded border border-primary bg-gray dark:bg-transparent">
+                          <span :class="checkboxToggle &amp;&amp; '!opacity-100'" class="opacity-0 ">
+                            <svg width="11" height="8" viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M10.0915 0.951972L10.0867 0.946075L10.0813 0.940568C9.90076 0.753564 9.61034 0.753146 9.42927 0.939309L4.16201 6.22962L1.58507 3.63469C1.40401 3.44841 1.11351 3.44879 0.932892 3.63584C0.755703 3.81933 0.755703 4.10875 0.932892 4.29224L0.932878 4.29225L0.934851 4.29424L3.58046 6.95832C3.73676 7.11955 3.94983 7.2 4.1473 7.2C4.36196 7.2 4.55963 7.11773 4.71406 6.9584L10.0468 1.60234C10.2436 1.4199 10.2421 1.1339 10.0915 0.951972ZM4.2327 6.30081L4.2317 6.2998C4.23206 6.30015 4.23237 6.30049 4.23269 6.30082L4.2327 6.30081Z" fill="#3056D3" stroke="#3056D3" stroke-width="0.4"></path>
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                      Individual use only
+                    </label>
+                  </div>
+                  <div x-data="{ checkboxToggle: false }" class="">
+                    <label for="checkboxLabelThree" class="flex cursor-pointer select-none items-center text-sm font-medium">
+                      <div class="relative">
+                        <input type="checkbox" id="checkboxLabelThree" class="sr-only" @change="checkboxToggle = !checkboxToggle">
+                        <div :class="checkboxToggle &amp;&amp; 'border-primary bg-gray dark:bg-transparent'" class="mr-4 flex h-5 w-5 items-center justify-center rounded border border-primary bg-gray dark:bg-transparent">
+                          <span :class="checkboxToggle &amp;&amp; '!opacity-100'" class="opacity-0 ">
+                            <svg width="11" height="8" viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M10.0915 0.951972L10.0867 0.946075L10.0813 0.940568C9.90076 0.753564 9.61034 0.753146 9.42927 0.939309L4.16201 6.22962L1.58507 3.63469C1.40401 3.44841 1.11351 3.44879 0.932892 3.63584C0.755703 3.81933 0.755703 4.10875 0.932892 4.29224L0.932878 4.29225L0.934851 4.29424L3.58046 6.95832C3.73676 7.11955 3.94983 7.2 4.1473 7.2C4.36196 7.2 4.55963 7.11773 4.71406 6.9584L10.0468 1.60234C10.2436 1.4199 10.2421 1.1339 10.0915 0.951972ZM4.2327 6.30081L4.2317 6.2998C4.23206 6.30015 4.23237 6.30049 4.23269 6.30082L4.2327 6.30081Z" fill="#3056D3" stroke="#3056D3" stroke-width="0.4"></path>
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                      Exclude sale items
+                    </label>
+                  </div>
+                  <div class="w-full ">
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                      Products
+                    </label>
+                    <input type="text" placeholder="Search for a Product..." class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary">
+                  </div>
+                  <div class="w-full ">
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                      Exclude products
+                    </label>
+                    <input type="text" placeholder="Search for a Product..." class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary">
+                  </div>
+                  <div>
+                    <label
+                      class="mb-3 block text-sm font-medium text-black dark:text-white"
+                    >
+                      Product categories
+                    </label>
+
+                    <div class="">
+                      <select class="hidden" x-cloak id="select">
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                        <option value="4">Option 4</option>
+                      </select>
+
+                      <div
+                        x-data="dropdown()"
+                        x-init="loadOptions()"
+                        class="flex flex-col items-center"
+                      >
+                        <input
+                          name="values"
+                          type="hidden"
+                          :value="selectedValues()"
+                        />
+                        <div class="relative z-20 inline-block w-full">
+                          <div class="relative flex flex-col items-center">
+                            <div @click="open" class="w-full">
+                              <div
+                                class="mb-2 flex rounded border border-stroke py-2 pl-3 pr-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                              >
+                                <div class="flex flex-auto flex-wrap gap-3">
+                                  <template
+                                    x-for="(option,index) in selected"
+                                    :key="index"
+                                  >
+                                    <div
+                                      class="my-1.5 flex items-center justify-center rounded border-[.5px] border-stroke bg-gray px-2.5 py-1.5 text-sm font-medium dark:border-strokedark dark:bg-white/30"
+                                    >
+                                      <div
+                                        class="max-w-full flex-initial"
+                                        x-model="options[option]"
+                                        x-text="options[option].text"
+                                      ></div>
+                                      <div
+                                        class="flex flex-auto flex-row-reverse"
+                                      >
+                                        <div
+                                          @click="remove(index,option)"
+                                          class="cursor-pointer pl-2 hover:text-danger"
+                                        >
+                                          <svg
+                                            class="fill-current"
+                                            role="button"
+                                            width="12"
+                                            height="12"
+                                            viewBox="0 0 12 12"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                          >
+                                            <path
+                                              fill-rule="evenodd"
+                                              clip-rule="evenodd"
+                                              d="M9.35355 3.35355C9.54882 3.15829 9.54882 2.84171 9.35355 2.64645C9.15829 2.45118 8.84171 2.45118 8.64645 2.64645L6 5.29289L3.35355 2.64645C3.15829 2.45118 2.84171 2.45118 2.64645 2.64645C2.45118 2.84171 2.45118 3.15829 2.64645 3.35355L5.29289 6L2.64645 8.64645C2.45118 8.84171 2.45118 9.15829 2.64645 9.35355C2.84171 9.54882 3.15829 9.54882 3.35355 9.35355L6 6.70711L8.64645 9.35355C8.84171 9.54882 9.15829 9.54882 9.35355 9.35355C9.54882 9.15829 9.54882 8.84171 9.35355 8.64645L6.70711 6L9.35355 3.35355Z"
+                                              fill="currentColor"
+                                            ></path>
+                                          </svg>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </template>
+                                  <div
+                                    x-show="selected.length == 0"
+                                    class="flex-1"
+                                  >
+                                    <input
+                                      placeholder="Select a option"
+                                      class="h-full w-full appearance-none bg-transparent p-1 px-2 outline-none"
+                                      :value="selectedValues()"
+                                    />
+                                  </div>
+                                </div>
+                                <div
+                                  class="flex w-8 items-center py-1 pl-1 pr-1"
+                                >
+                                  <button
+                                    type="button"
+                                    @click="open"
+                                    class="h-6 w-6 cursor-pointer outline-none focus:outline-none"
+                                    :class="isOpen() === true ? 'rotate-180' : ''"
+                                  >
+                                    <svg
+                                      width="24"
+                                      height="24"
+                                      viewBox="0 0 24 24"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <g opacity="0.8">
+                                        <path
+                                          fill-rule="evenodd"
+                                          clip-rule="evenodd"
+                                          d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                          fill="#637381"
+                                        ></path>
+                                      </g>
+                                    </svg>
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="w-full px-4">
+                              <div
+                                x-show.transition.origin.top="isOpen()"
+                                class="max-h-select absolute top-full left-0 z-40 w-full overflow-y-auto rounded bg-white shadow dark:bg-form-input"
+                                @click.outside="close"
+                              >
+                                <div class="flex w-full flex-col">
+                                  <template
+                                    x-for="(option,index) in options"
+                                    :key="index"
+                                  >
+                                    <div>
+                                      <div
+                                        class="w-full cursor-pointer rounded-t border-b border-stroke hover:bg-primary/5 dark:border-form-strokedark"
+                                        @click="select(index,$event)"
+                                      >
+                                        <div
+                                          :class="option.selected ? 'border-primary' : ''"
+                                          class="relative flex w-full items-center border-l-2 border-transparent p-2 pl-2"
+                                        >
+                                          <div
+                                            class="flex w-full items-center"
+                                          >
+                                            <div
+                                              class="mx-2 leading-6"
+                                              x-model="option"
+                                              x-text="option.text"
+                                            ></div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </template>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <label
+                      class="mb-3 block text-sm font-medium text-black dark:text-white"
+                    >
+                      Exclude categories
+                    </label>
+
+                    <div class="">
+                      <select class="hidden" x-cloak id="select">
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                        <option value="4">Option 4</option>
+                      </select>
+
+                      <div
+                        x-data="dropdown()"
+                        x-init="loadOptions()"
+                        class="flex flex-col items-center"
+                      >
+                        <input
+                          name="values"
+                          type="hidden"
+                          :value="selectedValues()"
+                        />
+                        <div class="relative z-10 inline-block w-full">
+                          <div class="relative flex flex-col items-center">
+                            <div @click="open" class="w-full">
+                              <div
+                                class="mb-2 flex rounded border border-stroke py-2 pl-3 pr-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                              >
+                                <div class="flex flex-auto flex-wrap gap-3">
+                                  <template
+                                    x-for="(option,index) in selected"
+                                    :key="index"
+                                  >
+                                    <div
+                                      class="my-1.5 flex items-center justify-center rounded border-[.5px] border-stroke bg-gray px-2.5 py-1.5 text-sm font-medium dark:border-strokedark dark:bg-white/30"
+                                    >
+                                      <div
+                                        class="max-w-full flex-initial"
+                                        x-model="options[option]"
+                                        x-text="options[option].text"
+                                      ></div>
+                                      <div
+                                        class="flex flex-auto flex-row-reverse"
+                                      >
+                                        <div
+                                          @click="remove(index,option)"
+                                          class="cursor-pointer pl-2 hover:text-danger"
+                                        >
+                                          <svg
+                                            class="fill-current"
+                                            role="button"
+                                            width="12"
+                                            height="12"
+                                            viewBox="0 0 12 12"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                          >
+                                            <path
+                                              fill-rule="evenodd"
+                                              clip-rule="evenodd"
+                                              d="M9.35355 3.35355C9.54882 3.15829 9.54882 2.84171 9.35355 2.64645C9.15829 2.45118 8.84171 2.45118 8.64645 2.64645L6 5.29289L3.35355 2.64645C3.15829 2.45118 2.84171 2.45118 2.64645 2.64645C2.45118 2.84171 2.45118 3.15829 2.64645 3.35355L5.29289 6L2.64645 8.64645C2.45118 8.84171 2.45118 9.15829 2.64645 9.35355C2.84171 9.54882 3.15829 9.54882 3.35355 9.35355L6 6.70711L8.64645 9.35355C8.84171 9.54882 9.15829 9.54882 9.35355 9.35355C9.54882 9.15829 9.54882 8.84171 9.35355 8.64645L6.70711 6L9.35355 3.35355Z"
+                                              fill="currentColor"
+                                            ></path>
+                                          </svg>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </template>
+                                  <div
+                                    x-show="selected.length == 0"
+                                    class="flex-1"
+                                  >
+                                    <input
+                                      placeholder="Select a option"
+                                      class="h-full w-full appearance-none bg-transparent p-1 px-2 outline-none"
+                                      :value="selectedValues()"
+                                    />
+                                  </div>
+                                </div>
+                                <div
+                                  class="flex w-8 items-center py-1 pl-1 pr-1"
+                                >
+                                  <button
+                                    type="button"
+                                    @click="open"
+                                    class="h-6 w-6 cursor-pointer outline-none focus:outline-none"
+                                    :class="isOpen() === true ? 'rotate-180' : ''"
+                                  >
+                                    <svg
+                                      width="24"
+                                      height="24"
+                                      viewBox="0 0 24 24"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <g opacity="0.8">
+                                        <path
+                                          fill-rule="evenodd"
+                                          clip-rule="evenodd"
+                                          d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                          fill="#637381"
+                                        ></path>
+                                      </g>
+                                    </svg>
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="w-full px-4">
+                              <div
+                                x-show.transition.origin.top="isOpen()"
+                                class="max-h-select absolute top-full left-0 z-40 w-full overflow-y-auto rounded bg-white shadow dark:bg-form-input"
+                                @click.outside="close"
+                              >
+                                <div class="flex w-full flex-col">
+                                  <template
+                                    x-for="(option,index) in options"
+                                    :key="index"
+                                  >
+                                    <div>
+                                      <div
+                                        class="w-full cursor-pointer rounded-t border-b border-stroke hover:bg-primary/5 dark:border-form-strokedark"
+                                        @click="select(index,$event)"
+                                      >
+                                        <div
+                                          :class="option.selected ? 'border-primary' : ''"
+                                          class="relative flex w-full items-center border-l-2 border-transparent p-2 pl-2"
+                                        >
+                                          <div
+                                            class="flex w-full items-center"
+                                          >
+                                            <div
+                                              class="mx-2 leading-6"
+                                              x-model="option"
+                                              x-text="option.text"
+                                            ></div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </template>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="w-full ">
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                      Allowed emails
+                    </label>
+                    <input type="text" placeholder="No restrictions" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary">
+                  </div>
+                </div>
+
+                <!-- usage limit section -->
+                <div class="flex flex-col gap-6 p-4 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+                  <div class="border-b  border-stroke  dark:border-strokedark">
+                    <h3 class="mb-4 font-medium text-xl text-black dark:text-white">
+                      Usage restriction
+                    </h3>
+                  </div>
+                  <div class="w-full ">
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                      Usage limit per coupon
+                    </label>
+                    <input type="number" placeholder="Unlimited usage" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary">
+                  </div>
+                  <div class="w-full ">
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                      Usage limit per user
+                    </label>
+                    <input type="number" placeholder="Unlimited usage" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary">
+                  </div>
+                </div>
+            </div>
+
+
+            <!-- right section -->
+             <div class="">
+                <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+                  <div class="border-b border-stroke p-4 dark:border-strokedark">
+                    <h3 class="font-medium text-black text-xl dark:text-white">
+                      Publish
+                    </h3>
+                  </div>
+                  
+                  <div class="flex flex-col gap-4 items-center justify-center p-2">
+                    <a href="#" class=" w-full inline-flex items-center justify-center rounded-md bg-green-100 px-10 py-4 text-center font-medium text-black hover:bg-opacity-90 lg:px-8 xl:px-10">
+                      Save
+                    </a>
+                    <a href="#" class=" w-full inline-flex items-center justify-center rounded-md bg-red-100 px-10 py-4 text-center font-medium text-black hover:bg-opacity-90 lg:px-8 xl:px-10">
+                      Discard
+                    </a>
+                  </div>
+                </div>
+
+             </div>
+        </div>
+        </main>
+        <!-- ===== Main Content End ===== -->
+      </div>
+      <!-- ===== Content Area End ===== -->
+    </div>
+    <!-- ===== Page Wrapper End ===== -->
+    <script>
+      function dropdown() {
+        return {
+          options: [],
+          selected: [],
+          show: false,
+          open() {
+            this.show = true;
+          },
+          close() {
+            this.show = false;
+          },
+          isOpen() {
+            return this.show === true;
+          },
+          select(index, event) {
+            if (!this.options[index].selected) {
+              this.options[index].selected = true;
+              this.options[index].element = event.target;
+              this.selected.push(index);
+            } else {
+              this.selected.splice(this.selected.lastIndexOf(index), 1);
+              this.options[index].selected = false;
+            }
+          },
+          remove(index, option) {
+            this.options[option].selected = false;
+            this.selected.splice(index, 1);
+          },
+          loadOptions() {
+            const options = document.getElementById("select").options;
+            for (let i = 0; i < options.length; i++) {
+              this.options.push({
+                value: options[i].value,
+                text: options[i].innerText,
+                selected:
+                  options[i].getAttribute("selected") != null
+                    ? options[i].getAttribute("selected")
+                    : false,
+              });
+            }
+          },
+          selectedValues() {
+            return this.selected.map((option) => {
+              return this.options[option].value;
+            });
+          },
+        };
+      }
+    </script>
+  </body>
+</html>
