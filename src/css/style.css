@@ -220,6 +220,6 @@ span.flatpickr-weekday,
   @apply text-6xl text-red-500;
 }
 
-tr{
+.manage-coupons-table tr{
   @apply hover:bg-gray-2 dark:hover:bg-meta-4 ease-in duration-300;
 }
