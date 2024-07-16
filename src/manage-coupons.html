@@ -4,16 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-        tr:hover{
-             
-        }
-    </style>
     <title>Manage coupons</title>
   </head>
 
   <body
-    x-data="{ page: 'tables', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
+    x-data="{ page: 'coupons', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
     x-init="
           darkMode = JSON.parse(localStorage.getItem('darkMode'));
           $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
@@ -73,8 +68,8 @@
           </th>
         </tr>
       </thead>
-      <tbody>
-        <tr class="hover:bg-gray-2 dark:hover:bg-meta-4">
+      <tbody class="manage-coupons-table">
+        <tr class="">
           <td
             class="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11"
           >
