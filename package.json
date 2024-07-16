@@ -18,6 +18,7 @@
   "devDependencies": {
     "@babel/core": "^7.16.12",
     "@babel/preset-env": "^7.16.11",
+    "@capacitor/cli": "^6.1.0",
     "autoprefixer": "^10.4.13",
     "babel-loader": "^8.2.3",
     "babel-plugin-prismjs": "^2.1.0",
@@ -40,6 +41,8 @@
   },
   "dependencies": {
     "@alpinejs/persist": "^3.12.0",
+    "@capacitor/android": "^6.1.0",
+    "@capacitor/core": "^6.1.0",
     "alpinejs": "^3.10.3",
     "apexcharts": "^3.36.3",
     "flatpickr": "^4.6.13",
