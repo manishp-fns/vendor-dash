@@ -215,3 +215,7 @@ span.flatpickr-weekday,
 [x-cloak] {
   display: none !important;
 }
+
+.coupon{
+  @apply text-6xl text-red-500;
+}
