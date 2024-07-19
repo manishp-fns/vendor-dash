@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link href="./output.css" rel="stylesheet" /> -->
+
+    <title>
+      eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template
+    </title>
+  </head>
+
+  <body
+    x-data="{ page: 'ecommerce', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
+    x-init="
+         darkMode = JSON.parse(localStorage.getItem('darkMode'));
+         $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+    :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}"
+  >
+    <!-- ===== Preloader Start ===== -->
+    <include src="./partials/preloader.html"></include>
+    <!-- ===== Preloader End ===== -->
+
+    <!-- ===== Page Wrapper Start ===== -->
+    <div class="flex h-screen overflow-hidden">
+      <!-- ===== Sidebar Start ===== -->
+      <include src="./partials/sidebar.html"></include>
+      <!-- ===== Sidebar End ===== -->
+
+      <!-- ===== Content Area Start ===== -->
+      <div
+        class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden"
+      >
+        <!-- ===== Header Start ===== -->
+        <include src="./partials/header.html" />
+        <!-- ===== Header End ===== -->
+
+        <!-- ===== Main Content Start ===== -->
+        <div class="mx-auto w-full p-6">
+          <div class="md:flex">
+            <div class="w-1/2">
+              <h1 class="mb-4 text-2xl font-bold">Add New variations</h1>
+            </div>
+          </div>
+          <div class="mt-5 grid gap-4 md:flex md:justify-start">
+            <button
+              type="button"
+              class="bg-gray-300 text-gray-700 hover:bg-gray-400 mr-2 rounded-md px-4 py-2 shadow-sm"
+            >
+              Generate variations
+            </button>
+            <button
+              type="button"
+              class="bg-gray-300 text-gray-700 hover:bg-gray-400 mr-2 rounded-md px-4 py-2 shadow-sm"
+            >
+              Add manually
+            </button>
+            <button
+              type="submit"
+              class="bg-gray-300 text-gray-700 hover:bg-gray-400 mr-2 rounded-md px-4 py-2 shadow-sm"
+            >
+              Bulk action
+            </button>
+          </div>
+
+          <div class="gap-5 md:flex">
+            <div class="mt-10 w-1/4">
+              <select
+                class="border-gray-300 mt-5 block rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              >
+                <option>S- Small</option>
+                <option>M- Medium</option>
+                <option>L- Large</option>
+                <option>XL- Extra Large</option>
+
+                <!-- Add more options as needed -->
+              </select>
+              <select
+                class="border-gray-300 mt-5 block rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              >
+                <option>M- Medium</option>
+                <option>S- Small</option>
+                <option>L- Large</option>
+                <option>XL- Extra Large</option>
+                <!-- Add more options as needed -->
+              </select>
+              <select
+                class="border-gray-300 mt-5 block rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              >
+                <option>L- Large</option>
+                <option>M- Medium</option>
+                <option>S- Small</option>
+                <option>XL- Extra Large</option>
+                <!-- Add more options as needed -->
+              </select>
+              <select
+                class="border-gray-300 mt-5 block rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              >
+                <option>XL- Extra Large</option>
+                <option>S- Small</option>
+                <option>M- Medium</option>
+                <option>L- Large</option>
+                <!-- Add more options as needed -->
+              </select>
+            </div>
+
+            <div class="mt-10 w-1/4">
+              <select
+                class="border-gray-300 mt-5 block rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              >
+                <option>Red</option>
+                <option>Green</option>
+                <option>Blue</option>
+                <option>Black</option>
+
+                <!-- Add more options as needed -->
+              </select>
+              <select
+                class="border-gray-300 mt-5 block rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              >
+                <option>Green</option>
+                <option>Red</option>
+                <option>Blue</option>
+                <option>Black</option>
+                <!-- Add more options as needed -->
+              </select>
+              <select
+                class="border-gray-300 mt-5 block rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              >
+                <option>Blue</option>
+                <option>Red</option>
+                <option>Green</option>
+                <option>Black</option>
+                <!-- Add more options as needed -->
+              </select>
+              <select
+                class="border-gray-300 mt-5 block rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              >
+                <option>Black</option>
+                <option>Red</option>
+                <option>Green</option>
+                <option>Blue</option>
+                <!-- Add more options as needed -->
+              </select>
+            </div>
+            <div class="mt-10 w-1/4">
+              <select
+                class="border-gray-300 mt-5 block rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              >
+                <option>Any Dimensions</option>
+                <option>Any Dimensions</option>
+
+                <!-- Add more options as needed -->
+              </select>
+
+              <select
+                class="border-gray-300 mt-5 block rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              >
+                <option>Any Dimensions</option>
+                <option>Any Dimensions</option>
+                <!-- Add more options as needed -->
+              </select>
+              <select
+                class="border-gray-300 mt-5 block rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              >
+                <option>Any Dimensions</option>
+                <option>Any Dimensions</option>
+                <!-- Add more options as needed -->
+              </select>
+              <select
+                class="border-gray-300 mt-5 block rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              >
+                <option>Any Dimensions</option>
+                <option>Any Dimensions</option>
+                <!-- Add more options as needed -->
+              </select>
+            </div>
+
+            <div class="mt-10">
+              <div class="mt-5 flex items-center gap-4">
+                <button
+                  type="button"
+                  class="rounded-md px-4 text-red-600 shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                >
+                  Remove
+                </button>
+                <button
+                  type="button"
+                  class="rounded-md px-4 text-blue-500 shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
+                  Edit
+                </button>
+              </div>
+              <div class="mt-5 flex items-center gap-4">
+                <button
+                  type="button"
+                  class="rounded-md px-4 text-red-600 shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                >
+                  Remove
+                </button>
+                <button
+                  type="button"
+                  class="rounded-md px-4 text-blue-500 shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
+                  Edit
+                </button>
+              </div>
+              <div class="mt-5 flex items-center gap-4">
+                <button
+                  type="button"
+                  class="rounded-md px-4 text-red-600 shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                >
+                  Remove
+                </button>
+                <button
+                  type="button"
+                  class="rounded-md px-4 text-blue-500 shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
+                  Edit
+                </button>
+              </div>
+              <div class="mt-5 flex items-center gap-4">
+                <button
+                  type="button"
+                  class="rounded-md px-4 text-red-600 shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                >
+                  Remove
+                </button>
+                <button
+                  type="button"
+                  class="rounded-md px-4 text-blue-500 shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
+                  Edit
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="mt-10 grid gap-4 md:flex md:justify-end">
+            <button
+              type="button"
+              class="bg-gray-300 text-gray-700 hover:bg-gray-400 mr-2 rounded-md px-4 py-2 shadow-sm"
+            >
+              Save Draft
+            </button>
+            <button
+              type="button"
+              class="mr-2 rounded-md bg-indigo-600 px-4 py-2 text-white shadow-sm hover:bg-indigo-700"
+            >
+              Preview
+            </button>
+            <button
+              type="submit"
+              class="rounded-md bg-blue-600 px-4 py-2 text-white shadow-sm hover:bg-blue-700"
+            >
+              Publish
+            </button>
+          </div>
+        </div>
+
+        <!-- ===== Main Content End ===== -->
+      </div>
+      <!-- ===== Content Area End ===== -->
+    </div>
+    <!-- ===== Page Wrapper End ===== -->
+  </body>
+</html>
