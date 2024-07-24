@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link href="./output.css" rel="stylesheet" /> -->
+
+    <title>
+      eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template
+    </title>
+  </head>
+
+  <body
+    x-data="{ page: 'ecommerce', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
+    x-init="
+         darkMode = JSON.parse(localStorage.getItem('darkMode'));
+         $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+    :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}"
+  >
+    <!-- ===== Preloader Start ===== -->
+    <include src="./partials/preloader.html"></include>
+    <!-- ===== Preloader End ===== -->
+
+    <!-- ===== Page Wrapper Start ===== -->
+    <div class="flex h-screen overflow-hidden">
+      <!-- ===== Sidebar Start ===== -->
+      <include src="./partials/sidebar.html"></include>
+      <!-- ===== Sidebar End ===== -->
+
+      <!-- ===== Content Area Start ===== -->
+      <div
+        class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden"
+      >
+        <!-- ===== Header Start ===== -->
+        <include src="./partials/header.html" />
+        <!-- ===== Header End ===== -->
+
+        <!-- ===== Main Content Start ===== -->
+        <main>
+          <div
+            class="mx-auto flex max-w-screen-2xl flex-col justify-between gap-4 p-4 md:p-6 lg:flex-row 2xl:p-10"
+          >
+            <!-- left section -->
+            <div class="flex w-full flex-col gap-4">
+              <!-- new coupon section -->
+              <div
+                class="rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark"
+              >
+                <label
+                  class="mb-3 block text-xl font-medium text-black dark:text-white"
+                >
+                  Add new variations
+                </label>
+                <a
+                  href="#"
+                  class="mt-4 mr-5 inline-flex items-center justify-center rounded-sm border-2 border-black bg-white p-4 text-center font-semibold text-black hover:bg-opacity-90 dark:bg-black dark:text-white"
+                >
+                  Generate Variations
+                </a>
+                <a
+                  href="#"
+                  class="mt-4 mr-5 inline-flex items-center justify-center rounded-sm border-2 border-black bg-white p-4 text-center font-semibold text-black hover:bg-opacity-90 dark:bg-black dark:text-white"
+                >
+                  Add manually
+                </a>
+                <a
+                  href="#"
+                  class="mt-4 mr-5 inline-flex items-center justify-center rounded-sm border-2 border-black bg-white p-4 text-center font-semibold text-black hover:bg-opacity-90 dark:bg-black dark:text-white"
+                >
+                  Bulk action
+                </a>
+              </div>
+
+              <!-- general section -->
+              <div
+                class="flex flex-col gap-6 rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark"
+              >
+                <div class="border-b border-stroke dark:border-strokedark">
+                  <h3
+                    class="mb-4 text-xl font-medium text-black dark:text-white"
+                  >
+                    Product data
+                  </h3>
+
+                  <div class="pb-2.5 md:flex-row md:gap-10 lg:flex">
+                    <div class="mt-3">
+                      <label
+                        class="mb-3 block text-sm font-medium text-black dark:text-white"
+                      >
+                        Size
+                      </label>
+                      <div
+                        x-data="{ isOptionSelected: false }"
+                        class="relative z-20 bg-white dark:bg-form-input"
+                      >
+                        <select
+                          class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                          :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
+                          @change="isOptionSelected = true"
+                        >
+                          <option value="" class="text-body">S- Small</option>
+                          <option value="" class="text-body">M- Medium</option>
+                          <option value="" class="text-body">L- Large</option>
+                          <option value="" class="text-body">
+                            XL- Extra Large
+                          </option>
+                        </select>
+                        <span
+                          class="absolute right-4 top-1/2 z-20 -translate-y-1/2"
+                        >
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g opacity="0.8">
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                fill="#637381"
+                              ></path>
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="mt-3">
+                      <label
+                        class="mb-3 block text-sm font-medium text-black dark:text-white"
+                      >
+                        Color
+                      </label>
+                      <div
+                        x-data="{ isOptionSelected: false }"
+                        class="relative z-20 bg-white dark:bg-form-input"
+                      >
+                        <select
+                          class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                          :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
+                          @change="isOptionSelected = true"
+                        >
+                          <option value="" class="text-body">Red</option>
+                          <option value="" class="text-body">Blue</option>
+                          <option value="" class="text-body">Green</option>
+                          <option value="" class="text-body">Yellow</option>
+                        </select>
+                        <span
+                          class="absolute right-4 top-1/2 z-20 -translate-y-1/2"
+                        >
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g opacity="0.8">
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                fill="#637381"
+                              ></path>
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="mt-3">
+                      <label
+                        class="mb-3 block text-sm font-medium text-black dark:text-white"
+                      >
+                        Dimensions
+                      </label>
+                      <div
+                        x-data="{ isOptionSelected: false }"
+                        class="relative z-20 bg-white dark:bg-form-input"
+                      >
+                        <select
+                          class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                          :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
+                          @change="isOptionSelected = true"
+                        >
+                          <option value="" class="text-body">
+                            Any Dimensions
+                          </option>
+                          <option value="" class="text-body">
+                            Any Dimensions
+                          </option>
+                          <option value="" class="text-body">
+                            Any Dimensions
+                          </option>
+                          <option value="" class="text-body">
+                            Any Dimensions
+                          </option>
+                        </select>
+                        <span
+                          class="absolute right-4 top-1/2 z-20 -translate-y-1/2"
+                        >
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g opacity="0.8">
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                fill="#637381"
+                              ></path>
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="mt-3">
+                      <label
+                        class="mb-3 block text-sm font-medium text-black dark:text-white"
+                      >
+                        Action
+                      </label>
+                      <a
+                        href="#"
+                        class="mr-6 inline-flex items-center justify-center rounded-md border border-black px-10 py-3 text-center font-medium text-red-600 hover:bg-opacity-90 lg:px-8 xl:px-10"
+                      >
+                        Remove
+                      </a>
+                      <a
+                        href="#"
+                        class="mr-4 inline-flex items-center justify-center rounded-md border border-black px-10 py-3 text-center font-medium text-blue-600 hover:bg-opacity-90 lg:px-8 xl:px-10"
+                      >
+                        Edit
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="pb-2.5 md:flex-row md:gap-10 lg:flex">
+                    <div class="mt-3">
+                      <div
+                        x-data="{ isOptionSelected: false }"
+                        class="relative z-20 bg-white dark:bg-form-input"
+                      >
+                        <select
+                          class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                          :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
+                          @change="isOptionSelected = true"
+                        >
+                          <option value="" class="text-body">M- Medium</option>
+                          <option value="" class="text-body">S- Small</option>
+                          <option value="" class="text-body">L- Large</option>
+                          <option value="" class="text-body">
+                            XL- Extra Large
+                          </option>
+                        </select>
+                        <span
+                          class="absolute right-4 top-1/2 z-20 -translate-y-1/2"
+                        >
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g opacity="0.8">
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                fill="#637381"
+                              ></path>
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="mt-3">
+                      <div
+                        x-data="{ isOptionSelected: false }"
+                        class="relative z-20 bg-white dark:bg-form-input"
+                      >
+                        <select
+                          class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                          :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
+                          @change="isOptionSelected = true"
+                        >
+                          <option value="" class="text-body">Blue</option>
+                          <option value="" class="text-body">Red</option>
+                          <option value="" class="text-body">Green</option>
+                          <option value="" class="text-body">Yellow</option>
+                        </select>
+                        <span
+                          class="absolute right-4 top-1/2 z-20 -translate-y-1/2"
+                        >
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g opacity="0.8">
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                fill="#637381"
+                              ></path>
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="mt-3">
+                      <div
+                        x-data="{ isOptionSelected: false }"
+                        class="relative z-20 bg-white dark:bg-form-input"
+                      >
+                        <select
+                          class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                          :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
+                          @change="isOptionSelected = true"
+                        >
+                          <option value="" class="text-body">
+                            Any Dimensions
+                          </option>
+                          <option value="" class="text-body">
+                            Any Dimensions
+                          </option>
+                          <option value="" class="text-body">
+                            Any Dimensions
+                          </option>
+                          <option value="" class="text-body">
+                            Any Dimensions
+                          </option>
+                        </select>
+                        <span
+                          class="absolute right-4 top-1/2 z-20 -translate-y-1/2"
+                        >
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g opacity="0.8">
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                fill="#637381"
+                              ></path>
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="mt-3">
+                      <a
+                        href="#"
+                        class="mr-6 inline-flex items-center justify-center rounded-md border border-black px-10 py-3 text-center font-medium text-red-600 hover:bg-opacity-90 lg:px-8 xl:px-10"
+                      >
+                        Remove
+                      </a>
+                      <a
+                        href="#"
+                        class="mr-4 inline-flex items-center justify-center rounded-md border border-black px-10 py-3 text-center font-medium text-blue-600 hover:bg-opacity-90 lg:px-8 xl:px-10"
+                      >
+                        Edit
+                      </a>
+                    </div>
+                  </div>
+                  <div class="pb-2.5 md:flex-row md:gap-10 lg:flex">
+                    <div class="mt-3">
+                      <div
+                        x-data="{ isOptionSelected: false }"
+                        class="relative z-20 bg-white dark:bg-form-input"
+                      >
+                        <select
+                          class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                          :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
+                          @change="isOptionSelected = true"
+                        >
+                          <option value="" class="text-body">L- Large</option>
+                          <option value="" class="text-body">S- Small</option>
+                          <option value="" class="text-body">M- Medium</option>
+                          <option value="" class="text-body">
+                            XL- Extra Large
+                          </option>
+                        </select>
+                        <span
+                          class="absolute right-4 top-1/2 z-20 -translate-y-1/2"
+                        >
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g opacity="0.8">
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                fill="#637381"
+                              ></path>
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="mt-3">
+                      <div
+                        x-data="{ isOptionSelected: false }"
+                        class="relative z-20 bg-white dark:bg-form-input"
+                      >
+                        <select
+                          class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                          :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
+                          @change="isOptionSelected = true"
+                        >
+                          <option value="" class="text-body">Green</option>
+                          <option value="" class="text-body">Red</option>
+                          <option value="" class="text-body">Blue</option>
+                          <option value="" class="text-body">Yellow</option>
+                        </select>
+                        <span
+                          class="absolute right-4 top-1/2 z-20 -translate-y-1/2"
+                        >
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g opacity="0.8">
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                fill="#637381"
+                              ></path>
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="mt-3">
+                      <div
+                        x-data="{ isOptionSelected: false }"
+                        class="relative z-20 bg-white dark:bg-form-input"
+                      >
+                        <select
+                          class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                          :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
+                          @change="isOptionSelected = true"
+                        >
+                          <option value="" class="text-body">
+                            Any Dimensions
+                          </option>
+                          <option value="" class="text-body">
+                            Any Dimensions
+                          </option>
+                          <option value="" class="text-body">
+                            Any Dimensions
+                          </option>
+                          <option value="" class="text-body">
+                            Any Dimensions
+                          </option>
+                        </select>
+                        <span
+                          class="absolute right-4 top-1/2 z-20 -translate-y-1/2"
+                        >
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g opacity="0.8">
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                fill="#637381"
+                              ></path>
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="mt-3">
+                      <a
+                        href="#"
+                        class="mr-6 inline-flex items-center justify-center rounded-md border border-black px-10 py-3 text-center font-medium text-red-600 hover:bg-opacity-90 lg:px-8 xl:px-10"
+                      >
+                        Remove
+                      </a>
+                      <a
+                        href="#"
+                        class="mr-4 inline-flex items-center justify-center rounded-md border border-black px-10 py-3 text-center font-medium text-blue-600 hover:bg-opacity-90 lg:px-8 xl:px-10"
+                      >
+                        Edit
+                      </a>
+                    </div>
+                  </div>
+                  <div class="pb-2.5 md:flex-row md:gap-10 lg:flex">
+                    <div class="mt-3">
+                      <div
+                        x-data="{ isOptionSelected: false }"
+                        class="relative z-20 bg-white dark:bg-form-input"
+                      >
+                        <select
+                          class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                          :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
+                          @change="isOptionSelected = true"
+                        >
+                          <option value="" class="text-body">
+                            XL- Extra Large
+                          </option>
+                          <option value="" class="text-body">S- Small</option>
+                          <option value="" class="text-body">M- Medium</option>
+                          <option value="" class="text-body">L- Large</option>
+                        </select>
+                        <span
+                          class="absolute right-4 top-1/2 z-20 -translate-y-1/2"
+                        >
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g opacity="0.8">
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                fill="#637381"
+                              ></path>
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="mt-3">
+                      <div
+                        x-data="{ isOptionSelected: false }"
+                        class="relative z-20 bg-white dark:bg-form-input"
+                      >
+                        <select
+                          class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                          :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
+                          @change="isOptionSelected = true"
+                        >
+                          <option value="" class="text-body">Yellow</option>
+                          <option value="" class="text-body">Red</option>
+                          <option value="" class="text-body">Blue</option>
+                          <option value="" class="text-body">Green</option>
+                        </select>
+                        <span
+                          class="absolute right-4 top-1/2 z-20 -translate-y-1/2"
+                        >
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g opacity="0.8">
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                fill="#637381"
+                              ></path>
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="mt-3">
+                      <div
+                        x-data="{ isOptionSelected: false }"
+                        class="relative z-20 bg-white dark:bg-form-input"
+                      >
+                        <select
+                          class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                          :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
+                          @change="isOptionSelected = true"
+                        >
+                          <option value="" class="text-body">
+                            Any Dimensions
+                          </option>
+                          <option value="" class="text-body">
+                            Any Dimensions
+                          </option>
+                          <option value="" class="text-body">
+                            Any Dimensions
+                          </option>
+                          <option value="" class="text-body">
+                            Any Dimensions
+                          </option>
+                        </select>
+                        <span
+                          class="absolute right-4 top-1/2 z-20 -translate-y-1/2"
+                        >
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g opacity="0.8">
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                fill="#637381"
+                              ></path>
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="mt-3">
+                      <a
+                        href="#"
+                        class="mr-6 inline-flex items-center justify-center rounded-md border border-black px-10 py-3 text-center font-medium text-red-600 hover:bg-opacity-90 lg:px-8 xl:px-10"
+                      >
+                        Remove
+                      </a>
+                      <a
+                        href="#"
+                        class="mr-4 inline-flex items-center justify-center rounded-md border border-black px-10 py-3 text-center font-medium text-blue-600 hover:bg-opacity-90 lg:px-8 xl:px-10"
+                      >
+                        Edit
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="">
+                  <a
+                    href="#"
+                    class="mr-5 inline-flex items-center justify-center rounded-md border border-black bg-green-200 px-10 py-3 text-center font-medium text-black hover:bg-opacity-90 lg:px-8 xl:px-10"
+                  >
+                    Save
+                  </a>
+                  <a
+                    href="#"
+                    class="inline-flex items-center justify-center rounded-md border border-black bg-red-300 px-10 py-3 text-center font-medium text-black hover:bg-opacity-90 lg:px-8 xl:px-10"
+                  >
+                    Discard
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+        <!-- ===== Main Content End ===== -->
+      </div>
+      <!-- ===== Content Area End ===== -->
+    </div>
+    <!-- ===== Page Wrapper End ===== -->
+  </body>
+</html>
