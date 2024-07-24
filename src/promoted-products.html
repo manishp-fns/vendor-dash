@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tables | TailAdmin - Tailwind CSS Admin Dashboard Template</title>
+  </head>
+
+  <body
+    x-data="{ page: 'promoted-products', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
+    x-init="
+          darkMode = JSON.parse(localStorage.getItem('darkMode'));
+          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+    :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}"
+  >
+    <!-- ===== Preloader Start ===== -->
+    <include src="./partials/preloader.html"></include>
+    <!-- ===== Preloader End ===== -->
+
+    <!-- ===== Page Wrapper Start ===== -->
+    <div class="flex h-screen overflow-hidden">
+      <!-- ===== Sidebar Start ===== -->
+      <include src="./partials/sidebar.html"></include>
+      <!-- ===== Sidebar End ===== -->
+
+      <!-- ===== Content Area Start ===== -->
+      <div
+        class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden"
+      >
+        <!-- ===== Header Start ===== -->
+        <include src="./partials/header.html" />
+        <!-- ===== Header End ===== -->
+
+        <!-- ===== Main Content Start ===== -->
+        <main>
+          <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+            <!-- Breadcrumb Start -->
+            <div
+              class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+            >
+              <h2 class="text-title-md2 font-bold text-black dark:text-white">
+                Promotions
+              </h2>
+
+              <nav>
+                <ol class="flex items-center gap-2">
+                  <li>
+                    <a class="font-medium" href="index.html">Dashboard /</a>
+                  </li>
+                  <li class="font-medium text-primary">Promotions</li>
+                </ol>
+              </nav>
+            </div>
+            <!-- Breadcrumb End -->
+
+
+              <!-- ====== Table Three Start -->
+              <div
+  class="rounded-sm border border-stroke bg-white px-5 pb-2.5 pt-6 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1"
+>
+  <div class="max-w-full overflow-x-auto">
+    <table class="w-full table-auto">
+      <thead>
+        <tr class="bg-gray-2 text-left dark:bg-meta-4">
+          <th
+            class="min-w-[220px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11"
+          >
+            Product Name
+          </th>
+          <th
+            class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white"
+          >
+            Product ID
+          </th>
+          <th
+            class="min-w-[120px] px-4 py-4 font-medium text-black dark:text-white"
+          >
+            Promoted On Date
+          </th>
+          <th
+            class="min-w-[120px] px-4 py-4 font-medium text-black dark:text-white"
+          >
+            Promoting Till Date
+          </th>
+          <th
+            class="min-w-[120px] px-4 py-4 font-medium text-black dark:text-white"
+          >
+           Durations
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            class="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11"
+          >
+            <h5 class="font-medium text-black dark:text-white">Product One</h5>
+            <p class="text-sm">$0.00</p>
+          </td>
+          <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+            <p class="text-black dark:text-white">101</p>
+          </td>
+          <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+            <p class="text-black dark:text-white">Jan 13,2023</p>
+          </td>
+          <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+            <p class="text-black dark:text-white">Mar 13,2023</p>
+          </td>
+          <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+              2 Month 0 day             
+          </td>
+        </tr>
+
+        <tr>
+          <td
+            class="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11"
+          >
+            <h5 class="font-medium text-black dark:text-white">Product Two</h5>
+            <p class="text-sm">$0.00</p>
+          </td>
+          <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+            <p class="text-black dark:text-white">102</p>
+          </td>
+          <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+            <p class="text-black dark:text-white">Jan 13,2024</p>
+          </td>
+          <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+            <p class="text-black dark:text-white">Jan 30,2024</p>
+          </td>
+          <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+              0 Month 17 days            
+          </td>
+        </tr>
+
+        <tr>
+          <td
+            class="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11"
+          >
+            <h5 class="font-medium text-black dark:text-white">Product Three</h5>
+            <p class="text-sm">$0.00</p>
+          </td>
+          <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+            <p class="text-black dark:text-white">103</p>
+          </td>
+          <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+            <p class="text-black dark:text-white">July 10,2024</p>
+          </td>
+          <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+            <p class="text-black dark:text-white">July 23,2024</p>
+          </td>
+          <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+              0 Month 13 days             
+          </td>
+        </tr>
+
+        <tr>
+          <td
+            class="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11"
+          >
+            <h5 class="font-medium text-black dark:text-white">Product Four</h5>
+            <p class="text-sm">$0.00</p>
+          </td>
+          <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+            <p class="text-black dark:text-white">104</p>
+          </td>
+          <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+            <p class="text-black dark:text-white">June 13,2024</p>
+          </td>
+          <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+            <p class="text-black dark:text-white">July 30,2024</p>
+          </td>
+          <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+              1 Month 13 days            
+          </td>
+        </tr>
+          
+        <tr>
+          <td
+            class="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11"
+          >
+            <h5 class="font-medium text-black dark:text-white">Product Five</h5>
+            <p class="text-sm">$0.00</p>
+          </td>
+          <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+            <p class="text-black dark:text-white">105</p>
+          </td>
+          <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+            <p class="text-black dark:text-white">May 30,2024</p>
+          </td>
+          <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+            <p class="text-black dark:text-white">July 31,2024</p>
+          </td>
+          <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+              2 Months 1 day           
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+              <!-- ====== Table Three End -->
+            </div>
+            <!-- ====== Table Section End -->
+          </div>
+        </main>
+        <!-- ===== Main Content End ===== -->
+      </div>
+      <!-- ===== Content Area End ===== -->
+    </div>
+    <!-- ===== Page Wrapper End ===== -->
+  </body>
+</html>
